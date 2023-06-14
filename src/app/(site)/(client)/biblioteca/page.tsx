@@ -34,19 +34,19 @@ export default function Biblioteca() {
           <div className="cards">
             <div className="card-custom">
               <a href="#">
-                <h1 className="fs-4 fw-light">Nombre</h1>
+                <h1 className="fs-4 fw-light text-center">El descubrimiento de Machu Picchu</h1>
               </a>
               <img src="/img/biblioteca/1.jpg" className="img-fluid" alt="" />
             </div>
             <div className="card-custom">
               <a href="#">
-                <h1 className="fs-4 fw-light">Nombre</h1>
+                <h1 className="fs-4 fw-light text-center">Chasqui</h1>
               </a>
               <img src="/img/biblioteca/2.jpg" className="img-fluid" alt="" />
             </div>
             <div className="card-custom">
               <a href="#">
-                <h1 className="fs-4 fw-light">Nombre</h1>
+                <h1 className="fs-4 fw-light text-center">Lineas de Nazca: Un viaje al pasado</h1>
               </a>
               <img src="/img/biblioteca/3.jpg" className="img-fluid" alt="" />
             </div>
