@@ -1,0 +1,72 @@
+/* Index */
+body{
+  background-color: #1C1E23;
+}
+
+.main{
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.destacados{
+  background-image: url('/img/index/destacados/fondo.jpg');
+  background-size: cover;
+  height: 550px;
+}
+
+.carousel__container{
+  max-width: 900px;
+}
+
+.carousel__container div{
+  max-height: 400px;
+}
+
+.cat-title, .prub-title {
+  color: #C44090;
+}
+
+.cards{
+  display: grid;
+  margin: 0 auto;
+  gap: 36px;
+  justify-content: center;
+  grid-auto-rows: 420px;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 20rem), 250px));
+}
+
+.card-custom{
+  position: relative;
+  max-width: 300px;
+  max-height: 420px;
+  overflow: hidden;
+}
+.card-custom a {
+  position: absolute;
+  text-decoration: none;
+  display: flex;
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  transition: .2s;
+}
+
+.card-custom a:hover {
+  transition: .2s;
+  background-color: #1c1e23b2;
+}
+
+.card-custom a h1{
+  color: transparent;
+  margin: auto;
+  transition: .2s;
+}
+.card-custom a:hover h1 {
+  transition: .2s;
+  color: #fff;
+}
+
+.card-custom img{
+  object-fit: cover;
+}
+

@@ -1,0 +1,35 @@
+body{
+  background-color: #000;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+}
+.main{
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  background-image: url('/img/login/fondo.png');
+  background-size: contain;
+}
+
+.login-container{
+  width: 100%;
+  max-width: 700px;
+}
+
+.label-username{
+  color: #C44090;
+}
+
+.button-login{
+  background-color: #C44090;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  padding: 5px 8%;
+}
+
+.forget-link:hover{
+  color: #fff !important;
+  transition: .2s;
+}

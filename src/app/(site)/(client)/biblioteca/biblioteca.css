@@ -1,0 +1,71 @@
+/* Biblioteca */
+body{
+  background-color: #1C1E23;
+}
+.main{
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.cat-title, .prub-title {
+  color: #C44090;
+}
+
+.cards{
+  display: grid;
+  margin: 0 auto;
+  gap: 36px;
+  justify-content: center;
+  grid-auto-rows: 420px;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 20rem), 250px));
+}
+
+.card-custom{
+  position: relative;
+  max-width: 300px;
+  max-height: 420px;
+  overflow: hidden;
+}
+.card-custom a {
+  position: absolute;
+  text-decoration: none;
+  display: flex;
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  transition: .2s;
+}
+
+.card-custom a:hover {
+  transition: .2s;
+  background-color: #1c1e23b2;
+}
+
+.card-custom a h1{
+  color: transparent;
+  margin: auto;
+  transition: .2s;
+}
+.card-custom a:hover h1 {
+  transition: .2s;
+  color: #fff;
+}
+
+.card-custom img{
+  object-fit: cover;
+}
+
+.proximamente a{
+  text-decoration: none;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.37);
+  height: 100%;
+  width: 100%;
+  transition: .2s;
+}
+
+.proximamente a h1{
+  color: #fff;
+  margin: auto;
+  transition: .2s;
+}

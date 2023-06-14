@@ -1,0 +1,29 @@
+.header{
+  background-color: #171A21;
+  z-index: 100;
+}
+
+.nav{
+  margin: 0 auto;
+  max-width: 1000px;
+  background-color: #171A21;
+}
+
+.nav__logo{
+  background: url("/img/navbar/Logo.png");
+  background-size: cover;
+  background-position: 0px -25px;
+  width: 120px;
+  height: 70px;
+}
+
+.separador{
+  margin: auto 0;
+  width: 2px;
+  height: 15px;
+}
+
+.auth-link:hover{
+  color: #C44090 !important;
+}
+
