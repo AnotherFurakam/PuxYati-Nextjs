@@ -40,3 +40,19 @@ body {
   transition: .2s;
   scale: 1.02;
 }
+
+/* Plan styles */
+.plan{
+  cursor: pointer
+}
+.plan .price {
+  color: #C44090;
+}
+.plan.active {
+  border: 2px solid #C44090;
+}
+
+/* Form */
+#sumitButton:disabled {
+  filter: saturate(50%);
+}

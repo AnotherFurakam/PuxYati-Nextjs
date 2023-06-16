@@ -1,8 +1,5 @@
 body{
   background-color: #000;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  height: 100vh;
 }
 .main{
   margin: 0 auto;
@@ -10,6 +7,7 @@ body{
   max-width: 1200px;
   background-image: url('/img/login/fondo.png');
   background-size: contain;
+  height: calc(100vh - (126px + 171px));
 }
 
 .login-container{

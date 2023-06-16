@@ -4,6 +4,7 @@ import './login.css'
 interface pageProps { }
 
 const page: FC<pageProps> = ({ }) => {
+
   return (
     <main className="main shadow d-flex justify-content-center align-items-center">
       <div className="login-container py-5">

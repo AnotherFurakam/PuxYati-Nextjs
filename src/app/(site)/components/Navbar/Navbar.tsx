@@ -1,6 +1,5 @@
 'use client'
-import { useEffect, type FC } from 'react';
-import 'bootstrap/dist/js/bootstrap.bundle'
+import { FC, useEffect } from 'react';
 import './navbar.css'
 import { usePathname } from 'next/navigation';
 
@@ -8,6 +7,10 @@ interface NavbarProps { }
 
 const Navbar: FC<NavbarProps> = ({ }) => {
   const pathname = usePathname()
+
+  useEffect(() => {
+    require('bootstrap/dist/js/bootstrap.bundle')
+  }, [])
 
   return (
     <header className="header">
