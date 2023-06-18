@@ -1,13 +1,11 @@
-body{
-  background-color: #000;
-}
+
 .main{
+  background-color: #000;
   margin: 0 auto;
   width: 100%;
-  max-width: 1200px;
   background-image: url('/img/login/fondo.png');
+  background-position: center;
   background-size: contain;
-  height: calc(100vh - (126px + 171px));
 }
 
 .login-container{

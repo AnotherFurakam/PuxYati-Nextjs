@@ -56,7 +56,7 @@ export default function Acercade() {
               </div>
             </div>
             <div className="d-flex justify-content-center justify-content-md-start align-items-center">
-              <a href="./Registro.html"><button className="button fs-5 text-uppercase" style={{ width: 300 }}>registrarse en
+              <a href="/registrarse"><button className="button fs-5 text-uppercase" style={{ width: 300 }}>registrarse en
                 puk-yati</button></a>
             </div>
           </div>
@@ -74,7 +74,7 @@ export default function Acercade() {
             <p className="m-0 text-center fs-3 text-light">Tenemos una gran variedad de videojuegos que ofrecen un verdadero
               complemento a la educación didáctica.</p>
             <div className="d-flex justify-content-center align-items-center">
-              <a href="./biblioteca.html" style={{ zIndex: 2 }}><button className="button fs-4 text-uppercase">Biblioteca</button></a>
+              <a href="/biblioteca" style={{ zIndex: 2 }}><button className="button fs-4 text-uppercase">Biblioteca</button></a>
             </div>
           </div>
         </div>

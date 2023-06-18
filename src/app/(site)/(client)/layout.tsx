@@ -1,8 +1,9 @@
 import { Metadata } from 'next'
-import '../../globals.css'
+import '../globals.css'
 import Navbar from '../components/Navbar/Navbar'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Footer from '../components/Footer/Footer'
+import Provider from '../Provider'
 
 export const metadata: Metadata = {
   title: 'Puk Yati',
@@ -17,11 +18,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true} >
-        <Navbar />
-        {
-          children
-        }
-        <Footer />
+        <Provider>
+          <Navbar />
+          {
+            children
+          }
+          <Footer />
+        </Provider>
       </body>
     </html>
   )

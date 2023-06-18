@@ -1,10 +1,30 @@
+"use client"
+import { useSession } from 'next-auth/react';
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import './comunidad.css'
 import { BiSearch, BiEdit } from "react-icons/bi";
 import { GoZap } from "react-icons/go";
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
 
 export default function Comunidad() {
+
+  const session = useSession()
+
+  const { push } = useRouter()
+
+  const handleClick = () => {
+    if (session.status === 'authenticated') {
+      Swal.fire({
+        icon: 'success',
+        text: 'Acción permitida'
+      })
+    } else {
+      push('login', { shallow: true })
+    }
+  }
+
   return (
     <main className="main shadow d-flex justify-content-center align-items-center">
 
@@ -16,19 +36,19 @@ export default function Comunidad() {
               <h1 className="text-uppercase text-light text-center text-md-start">comunidad</h1>
             </div>
             <form className="d-flex align-items-center justify-content-md-start justify-content-center">
-              <input type="text" className="form-control rounded-0" style={{width: 280, maxWidth: 280}} />
-                <div className="d-flex justify-content-center align-items-center bg-light p-1 px-2 m-0 btn-search"
-                  style={{minHeight: 38}}>
-                  <BiSearch size={20} />
-                </div>
+              <input type="text" className="form-control rounded-0" style={{ width: 280, maxWidth: 280 }} />
+              <div className="d-flex justify-content-center align-items-center bg-light p-1 px-2 m-0 btn-search"
+                style={{ minHeight: 38 }}>
+                <BiSearch size={20} />
+              </div>
             </form>
           </div>
           <div className="d-flex gap-3 flex-column flex-sm-row w-100">
-            <button type="button" className="w-100 button d-flex align-items-center justify-content-center px-3 gap-2">
-              <GoZap className='fs-4'/>
+            <button type="button" className="w-100 button d-flex align-items-center justify-content-center px-3 gap-2" onClick={handleClick}>
+              <GoZap className='fs-4' />
               <h4 className="m-0 fs-5">Nuevos mensajes</h4>
             </button>
-            <button type="button" className="w-100 button d-flex align-items-center justify-content-center px-3 gap-2">
+            <button type="button" className="w-100 button d-flex align-items-center justify-content-center px-3 gap-2" onClick={handleClick}>
               <BiEdit className='fs-4' />
               <h4 className="m-0 fs-5">Publicar tema</h4>
             </button>
@@ -129,13 +149,13 @@ export default function Comunidad() {
             <li className="list-group-item">
               <div className="d-flex align-items-center">
                 <img src="/img/comunidad/conocimiento/LogoInactivo.png" className="img-conocimiento__icon" />
-                  <div>
-                    <a href="#" className="tema-title fs-4 conocimiento-title">Videojuegos Puk-Yati</a>
-                    <ul className="conocimento-list d-flex gap-5">
-                      <li className="conocimento-list__item"><span className="text-secondary">Temas:</span> 2</li>
-                      <li className="conocimento-list__item"><span className="text-secondary">Mensajes:</span> 6</li>
-                    </ul>
-                  </div>
+                <div>
+                  <a href="#" className="tema-title fs-4 conocimiento-title">Videojuegos Puk-Yati</a>
+                  <ul className="conocimento-list d-flex gap-5">
+                    <li className="conocimento-list__item"><span className="text-secondary">Temas:</span> 2</li>
+                    <li className="conocimento-list__item"><span className="text-secondary">Mensajes:</span> 6</li>
+                  </ul>
+                </div>
               </div>
             </li>
           </ul>

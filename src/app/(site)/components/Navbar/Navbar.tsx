@@ -2,30 +2,45 @@
 import { FC, useEffect } from 'react';
 import './navbar.css'
 import { usePathname } from 'next/navigation';
+import { signOut, useSession } from 'next-auth/react';
 
 interface NavbarProps { }
 
 const Navbar: FC<NavbarProps> = ({ }) => {
+
+  const { data } = useSession()
+
   const pathname = usePathname()
 
   useEffect(() => {
     require('bootstrap/dist/js/bootstrap.bundle')
-  }, [])
+  }, [data])
 
   return (
     <header className="header">
       <nav className="navbar navbar-dark navbar-expand-md nav flex-column">
         <div className="d-flex justify-content-end w-100">
-          <ul className="navbar-nav auth-nav flex-row me-3 me-lg-0">
-            <li className="nav-item">
-              <a className={`nav-link auth-link ${pathname === '/login' && 'active'}`} href="/login">Iniciar sesión</a>
-            </li>
-            <li className="bg-light mx-1 separador">
-            </li>
-            <li className="nav-item">
-              <a className={`nav-link auth-link ${pathname === '/registrarse' && 'active'}`} href="/registrarse">Registrarse</a>
-            </li>
-          </ul>
+          {
+            data?.user ?
+              <div className="dropdown">
+                <button className="btn bg-black py-2 px-4  dropdown-toggle text-white m-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {`${data.user.name} ${data.user.lastname}`}
+                </button>
+                <ul className="dropdown-menu">
+                  <li className='dropdown-item' style={{cursor: 'pointer'}} onClick={() => signOut()}>Cerrar sesión</li>
+                </ul>
+              </div>
+              : <ul className="navbar-nav auth-nav flex-row me-3 me-lg-0">
+                <li className="nav-item">
+                  <a className={`nav-link auth-link ${pathname === '/login' && 'active'}`} href="/login">Iniciar sesión</a>
+                </li>
+                <li className="bg-light mx-1 separador">
+                </li>
+                <li className="nav-item">
+                  <a className={`nav-link auth-link ${pathname === '/registrarse' && 'active'}`} href="/registrarse">Registrarse</a>
+                </li>
+              </ul>
+          }
         </div>
         <div className="container-fluid mx-lg-4">
           <a href="/" className="nav__logo"></a>

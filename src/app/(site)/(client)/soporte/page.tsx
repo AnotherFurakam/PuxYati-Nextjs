@@ -1,8 +1,45 @@
+"use client"
+import { useState } from "react";
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import "./soporte.css";
+import Swal from "sweetalert2";
+import { useSession } from "next-auth/react";
 
 export default function Soporte() {
+
+  const session = useSession()
+
+  const [data, setData] = useState({
+    correo: '',
+    comentario: ''
+  })
+
+  const handleChace = (e: any) => {
+    const { name, value } = e.target
+
+    setData({
+      ...data,
+      [name]: value
+    })
+  }
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    console.log(data)
+    if (data.correo === '' || data.comentario === '') {
+      Swal.fire({
+        icon: 'error',
+        text: 'Debe llenar el formulario'
+      })
+    } else {
+      Swal.fire({
+        icon: 'success',
+        text: 'Formulario enviado'
+      }).then(() => setData({ correo: '', comentario: '' }))
+    }
+  }
+
   return (
     <main className="main shadow d-flex justify-content-center align-items-center py-5">
 
@@ -15,18 +52,20 @@ export default function Soporte() {
             <img src="/img/soporte/Logo.png" className="img-fluid" style={{ maxWidth: 150 }} />
           </div>
         </div>
-        <div className="py-4 px-2 px-lg-4 rounded-2 shadow" style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-          <div className="pb-4">
-            <p className="m-0 text-light fs-6 text-center">Inicia sesión en tu cuenta de Puk-Yati para revisar las compras, el
-              estado de la cuenta y obtener ayuda personalizada.</p>
+        {
+          session.status === 'unauthenticated' && <div className="py-4 px-2 px-lg-4 rounded-2 shadow" style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
+            <div className="pb-4">
+              <p className="m-0 text-light fs-6 text-center">Inicia sesión en tu cuenta de Puk-Yati para revisar las compras, el
+                estado de la cuenta y obtener ayuda personalizada.</p>
+            </div>
+            <div className="d-flex flex-column flex-lg-row align-items-center justify-content-lg-around px-2 gap-4">
+              <a href="/login" className="button ms-lg-5" style={{ minWidth: 300, maxWidth: 380 }}>Iniciar sesion en Puk-Yati</a>
+              <a href="./contraseña_olvidada.html" className="button me-lg-5"
+                style={{ minWidth: 300, maxWidth: 380, backgroundColor: 'rgb(134, 133, 133)' }}>Ayuda, no puedo iniciar
+                sesión</a>
+            </div>
           </div>
-          <div className="d-flex flex-column flex-lg-row align-items-center justify-content-lg-around px-2 gap-4">
-            <a href="./login.html" className="button ms-lg-5" style={{ minWidth: 300, maxWidth: 380 }}>Iniciar sesion en Puk-Yati</a>
-            <a href="./contraseña_olvidada.html" className="button me-lg-5"
-              style={{ minWidth: 300, maxWidth: 380, backgroundColor: 'rgb(134, 133, 133)' }}>Ayuda, no puedo iniciar
-              sesión</a>
-          </div>
-        </div>
+        }
         <div className="mt-5" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
           <div className="accordion accordion-flush bg-transparent" id="accordionFlushExample">
             <div className="accordion-item bg-transparent">
@@ -39,18 +78,18 @@ export default function Soporte() {
               </h2>
               <div id="flush-collapseOne" className="accordion-collapse collapse bg-transparent text-light"
                 aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                <form action="" className="p-4 d-flex flex-column gap-4">
+                <form onSubmit={handleSubmit} className="p-4 d-flex flex-column gap-4">
                   <div>
                     <label className="form-label text-light text-uppercase fs-4">usuario</label>
-                    <input type="text" className="form-control rounded-0 rounded-0 rounded-0" />
+                    <input value={data.correo} name="correo" type="text" onChange={handleChace} className="form-control rounded-0 rounded-0 rounded-0" />
                   </div>
                   <div>
                     <label className="form-label text-light text-uppercase fs-4">comentario</label>
-                    <textarea className="form-control rounded-0 rounded-0 rounded-0" name="" id="" cols={30}
+                    <textarea value={data.comentario} name="comentario" onChange={handleChace} className="form-control rounded-0 rounded-0 rounded-0" id="" cols={30}
                       rows={10}></textarea>
                   </div>
                   <div className="d-flex justify-content-center">
-                    <button className="button">Enviar</button>
+                    <button type="submit" className="button">Enviar</button>
                   </div>
                 </form>
               </div>

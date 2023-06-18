@@ -1,6 +1,24 @@
+"use client"
+import { useSession } from 'next-auth/react'
 /* eslint-disable @next/next/no-img-element */
 import './biblioteca.css'
+import { useRouter } from 'next/navigation'
+import Swal from 'sweetalert2'
 export default function Biblioteca() {
+  const session = useSession()
+
+  const { push } = useRouter()
+
+  const handleClick = () => {
+    if (session.status === 'authenticated') {
+      Swal.fire({
+        icon: 'success',
+        text: 'Acceso al juego permitido'
+      })
+    } else {
+      push('login', { shallow: true })
+    }
+  }
   return (
     <main className="main">
       <section className="prueba-cat row mx-0 mb-4 mt-5">
@@ -32,19 +50,19 @@ export default function Biblioteca() {
         <div className="prueba col-md-10">
           <h1 className="text-uppercase fs-4 text-light mb-4">jugados recientemente</h1>
           <div className="cards">
-            <div className="card-custom">
+            <div className="card-custom" onClick={handleClick}>
               <a href="#">
                 <h1 className="fs-4 fw-light text-center">El descubrimiento de Machu Picchu</h1>
               </a>
               <img src="/img/biblioteca/1.jpg" className="img-fluid" alt="" />
             </div>
-            <div className="card-custom">
+            <div className="card-custom" onClick={handleClick}>
               <a href="#">
                 <h1 className="fs-4 fw-light text-center">Chasqui</h1>
               </a>
               <img src="/img/biblioteca/2.jpg" className="img-fluid" alt="" />
             </div>
-            <div className="card-custom">
+            <div className="card-custom" onClick={handleClick}>
               <a href="#">
                 <h1 className="fs-4 fw-light text-center">Lineas de Nazca: Un viaje al pasado</h1>
               </a>

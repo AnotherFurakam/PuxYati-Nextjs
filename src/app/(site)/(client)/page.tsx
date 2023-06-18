@@ -1,8 +1,31 @@
+"use client"
+import { useSession } from 'next-auth/react';
 /* eslint-disable @next/next/no-img-element */
-import './index.css'
 import { BiSearch } from "react-icons/bi";
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function Home() {
+  const session = useSession()
+
+  const { push } = useRouter()
+
+  const handleClick = () => {
+    if (session.status === 'authenticated') {
+      Swal.fire({
+        icon: 'success',
+        text: 'Acceso al juego permitido'
+      })
+    } else {
+      push('login')
+    }
+  }
+
+  useEffect(() => {
+    require('./index.css')
+  }, []) 
+
   return (
     <main className="main">
       <section className="destacados py-4 px-2" id="destacados">
@@ -57,16 +80,16 @@ export default function Home() {
           <div className="cat-list navbar-dark">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0 fs-6">
               <li className="nav-item">
-                <a className="nav-link" href="#">Ciencia</a>
+                <a className="nav-link">Ciencia</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Geografía</a>
+                <a className="nav-link">Geografía</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Historia</a>
+                <a className="nav-link">Historia</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Mitos y leyendas</a>
+                <a className="nav-link">Mitos y leyendas</a>
               </li>
             </ul>
           </div>
@@ -74,38 +97,38 @@ export default function Home() {
         <div className="prueba col-md-10">
           <h1 className="prub-title text-uppercase fs-4">prueba también</h1>
           <div className="cards">
-            <div className="card-custom">
-              <a href="#">
+            <div className="card-custom" onClick={handleClick}>
+              <a>
                 <h1 className="fs-4 fw-light text-center">El descubrimiento de Machu Picchu</h1>
               </a>
               <img src="/img/index/prueba_tambien/1.jpg" className="img-fluid" alt="" />
             </div>
-            <div className="card-custom">
-              <a href="#">
+            <div className="card-custom" onClick={handleClick}>
+              <a>
                 <h1 className="fs-4 fw-light text-center">Chasqui</h1>
               </a>
               <img src="/img/index/prueba_tambien/2.jpg" className="img-fluid" alt="" />
             </div>
-            <div className="card-custom">
-              <a href="#">
+            <div className="card-custom" onClick={handleClick}>
+              <a>
                 <h1 className="fs-4 fw-light text-center">Lineas de Nazca: Un viaje al pasado</h1>
               </a>
               <img src="/img/index/prueba_tambien/3.jpg" className="img-fluid" alt="" />
             </div>
-            <div className="card-custom">
-              <a href="#">
+            <div className="card-custom" onClick={handleClick}>
+              <a>
                 <h1 className="fs-4 fw-light text-center">1814: La rebelión del Cusco</h1>
               </a>
               <img src="/img/index/prueba_tambien/4.jpg" className="img-fluid" alt="" />
             </div>
-            <div className="card-custom">
-              <a href="#">
+            <div className="card-custom" onClick={handleClick}>
+              <a>
                 <h1 className="fs-4 fw-light text-center">El camino a la independencia del Perú: Simón Bolívar</h1>
               </a>
               <img src="/img/index/prueba_tambien/5.jpg" className="img-fluid" alt="" />
             </div>
-            <div className="card-custom">
-              <a href="#">
+            <div className="card-custom" onClick={handleClick}>
+              <a>
                 <h1 className="fs-4 fw-light text-center">Atrapados en Chavín de Huántar</h1>
               </a>
               <img src="/img/index/prueba_tambien/6.jpg" className="img-fluid" alt="" />
