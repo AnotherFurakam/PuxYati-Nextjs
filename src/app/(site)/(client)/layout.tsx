@@ -1,9 +1,9 @@
 import { Metadata } from 'next'
 import '../globals.css'
-import Navbar from '../components/Navbar/Navbar'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Footer from '../components/Footer/Footer'
 import Provider from '../Provider'
+import Navbar from './components/Navbar/Navbar'
+import Footer from './components/Footer/Footer'
 
 export const metadata: Metadata = {
   title: 'Puk Yati',
