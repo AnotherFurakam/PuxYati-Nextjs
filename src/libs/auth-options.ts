@@ -2,7 +2,7 @@
 import { AuthOptions } from "next-auth";
 import CredentialProvider from "next-auth/providers/credentials";
 import prisma from "@/libs/prisma"
-import { User } from "@prisma/client";
+import { Admin, User } from "@prisma/client";
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -19,20 +19,36 @@ export const authOptions: AuthOptions = {
 
         try {
 
-          const user:User | null = await prisma.user.findFirst({
-            where: {
-              email: credentials.email
+          let user: User | null = null;
+
+          if (credentials.email.split('@')[1] === 'admin.com') {
+            const admin = await prisma.admin.findFirst({
+              where: {
+                email: credentials.email
+              }
+            })
+            if (admin?.password === credentials.password) {
+              return {
+                id: admin.id,
+                email: admin.email,
+                name: "admin",
+                lastname: "user",
+              } as User
+            } else {
+              throw new Error('Usuario o contraseña incorrecta')
             }
-          })
-
-          if (!user) throw new Error('Usuario o contraseña incorrecta')
-
-          if (user.hashedPassword === credentials.password) {
-            return user
-          }else {
-            throw new Error('Usuario o contraseña incorrecta')
+          } else {
+            user = await prisma.user.findFirst({
+              where: {
+                email: credentials.email
+              }
+            })
+            if (user?.hashedPassword === credentials.password) {
+              return user
+            } else {
+              throw new Error('Usuario o contraseña incorrecta')
+            }
           }
-
         } catch (error: any) {
           throw new Error(error.message)
         }
@@ -42,10 +58,10 @@ export const authOptions: AuthOptions = {
     // ...add more providers here
   ],
   callbacks: {
-    async jwt({token, user}) {
-      return {...token, ...user}
+    async jwt({ token, user }) {
+      return { ...token, ...user }
     },
-    async session({session, token, user}) {
+    async session({ session, token, user }) {
       session.user = token as any
       return session
     }
@@ -55,5 +71,5 @@ export const authOptions: AuthOptions = {
     strategy: "jwt",
     maxAge: 604800 // the session duration is seven days
   },
-  secret: "atr5-gt65-9jet"
+  secret: process.env.NEXTAUTH_SECRET
 }

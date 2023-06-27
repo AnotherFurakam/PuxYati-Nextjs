@@ -22,6 +22,12 @@ model User {
   userPlan UserPlan[] 
 }
 
+model Admin {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  email String
+  password String
+}
+
 model Card {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   number String
