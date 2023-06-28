@@ -17,8 +17,31 @@ const addUserPlan = async (userPlan: ICreateUserPlan): Promise<UserPlan> => {
   }
 } 
 
+const getGanancias = async () => {
+  const ganancias = await prisma.userPlan.findMany({
+    where: {
+      expired_date: {
+        gte: new Date()
+      }
+    },
+    select: {
+      plan: {
+        select: {
+          price: true
+        }
+      }
+    }
+  })
+  let suma = 0
+  ganancias.forEach(plan => {
+    suma += plan.plan.price
+  });
+  return Math.round(suma)
+}
+
 const userPlanService = {
-  addUserPlan
+  addUserPlan,
+  getGanancias
 }
 
 export default userPlanService

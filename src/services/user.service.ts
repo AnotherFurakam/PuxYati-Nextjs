@@ -49,9 +49,15 @@ const getUsers = async() => {
   }
 }  
 
+const countUsers = async () => {
+  const users = await prisma.user.count({})
+  return users
+}
+
 const userService = {
   addUser,
-  getUsers
+  getUsers,
+  countUsers
 }
 
 export default userService
