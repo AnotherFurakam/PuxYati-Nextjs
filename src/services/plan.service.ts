@@ -27,9 +27,17 @@ const getPlan = async (): Promise<Plan[]> => {
   }
 }
 
+const countPlanes = async () => {
+  const planes = await prisma.plan.count({})
+  return planes
+}
+
+
+
 const planService = {
   addPlan,
-  getPlan
+  getPlan,
+  countPlanes
 }
 
 export default planService
