@@ -25,7 +25,7 @@ export async function GET(request: Request) {
     const users = await userService.getUsers()
 
     const user = users[0]
-    console.log(format(user.userPlan[0]?.expired_date, 'dd/MM/yyyy'))
+    //console.log(format(user.userPlan[0]?.expired_date, 'dd/MM/yyyy'))
 
     return NextResponse.json(users, { status: 200 })
   } catch (error: any) {
